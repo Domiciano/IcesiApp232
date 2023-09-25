@@ -18,7 +18,7 @@ class SignupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignupBinding.inflate(inflater, container, false)
-        return inflater.inflate(R.layout.fragment_signup, container, false)
+        return binding.root
     }
 
     companion object {
