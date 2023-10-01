@@ -26,10 +26,11 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        //Cargamos inicialmente el fragment de sign in
         loadFragment(signinFragment)
     }
 
-    private fun loadFragment(fragment: Fragment) {
+    fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(binding.fragmentContainer.id, fragment).commit()
     }
 }

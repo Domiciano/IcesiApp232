@@ -35,7 +35,7 @@ class AuthViewModel : ViewModel() {
                 Log.e(">>>", "Repetido")
             } catch (e: FirebaseAuthWeakPasswordException) {
                 withContext(Dispatchers.Main){errorLV.value = ErrorMessage("La clave es muy debil")}
-                Log.e(">>>", "Clave debil")
+                Log.e(">>>", "Clave muy corta")
             }
         }
     }

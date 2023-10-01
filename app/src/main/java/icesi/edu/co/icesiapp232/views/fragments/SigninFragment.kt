@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import icesi.edu.co.icesiapp232.databinding.FragmentSigninBinding
+import icesi.edu.co.icesiapp232.views.AuthActivity
 
 class SigninFragment : Fragment() {
 
@@ -16,6 +17,9 @@ class SigninFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSigninBinding.inflate(inflater, container, false)
+
+        (activity as AuthActivity).loadFragment(AuthActivity.SIGN_UP)
+
         return binding.root
     }
 
