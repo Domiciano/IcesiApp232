@@ -17,9 +17,6 @@ class SigninFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSigninBinding.inflate(inflater, container, false)
-
-        (activity as AuthActivity).loadFragment(AuthActivity.SIGN_UP)
-
         return binding.root
     }
 
