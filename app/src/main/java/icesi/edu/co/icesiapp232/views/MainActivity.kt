@@ -18,7 +18,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        vm.signin("b@beta.com","1236")
-
     }
 }
