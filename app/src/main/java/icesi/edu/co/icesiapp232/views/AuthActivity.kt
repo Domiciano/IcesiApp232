@@ -14,11 +14,11 @@ class AuthActivity : AppCompatActivity() {
         ActivityAuthBinding.inflate(layoutInflater)
     }
 
-    private val signinFragment by lazy {
+     val signinFragment by lazy {
         SigninFragment.newInstance()
     }
 
-    private val signupFragment by lazy {
+     val signupFragment by lazy {
         SignupFragment.newInstance()
     }
 
@@ -31,6 +31,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
     fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(binding.fragmentContainer.id, fragment).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, fragment).commit()
     }
 }

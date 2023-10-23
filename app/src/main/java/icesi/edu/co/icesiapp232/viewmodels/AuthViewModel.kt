@@ -18,8 +18,8 @@ import kotlinx.coroutines.withContext
 
 class AuthViewModel : ViewModel() {
 
-    private val authStateLV = MutableLiveData<AuthState>()
-    private val errorLV = MutableLiveData<ErrorMessage>()
+    val authStateLV = MutableLiveData<AuthState>()
+    val errorLV = MutableLiveData<ErrorMessage>()
 
     fun signup(email: String, pass: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -27,6 +27,7 @@ class AuthViewModel : ViewModel() {
                 val result = Firebase.auth.createUserWithEmailAndPassword(email, pass).await()
                 withContext(Dispatchers.Main){ authStateLV.value = AuthState(result.user?.uid, true)}
                 Log.e(">>>", "Registrado")
+                Firebase.auth.currentUser
             }catch (e: FirebaseAuthInvalidCredentialsException) {
                 withContext(Dispatchers.Main){errorLV.value = ErrorMessage("El correo está mal formado")}
                 Log.e(">>>", "Mal formado")
