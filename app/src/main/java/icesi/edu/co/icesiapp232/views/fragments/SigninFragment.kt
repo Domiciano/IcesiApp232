@@ -28,6 +28,9 @@ class SigninFragment : Fragment() {
         binding.signinBtn.setOnClickListener {
 
         }
+
+
+
         return binding.root
     }
 
