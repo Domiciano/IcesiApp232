@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,10 +22,19 @@ class AuthViewModel : ViewModel() {
     val authStateLV = MutableLiveData<AuthState>()
     val errorLV = MutableLiveData<ErrorMessage>()
 
-    fun signup(email: String, pass: String) {
+    fun signup(username:String, email: String, pass: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val result = Firebase.auth.createUserWithEmailAndPassword(email, pass).await()
+                val user = hashMapOf(
+                    "username" to username,
+                    "email" to email,
+                    "id" to Firebase.auth.currentUser?.uid
+                )
+                Firebase.firestore.collection("users")
+                    .document(user["id"]!!)
+                    .set(user).await()
+
                 withContext(Dispatchers.Main){ authStateLV.value = AuthState(result.user?.uid, true)}
                 Log.e(">>>", "Registrado")
                 Firebase.auth.currentUser

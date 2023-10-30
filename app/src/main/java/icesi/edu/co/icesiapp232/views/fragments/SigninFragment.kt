@@ -1,5 +1,6 @@
 package icesi.edu.co.icesiapp232.views.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,7 +27,15 @@ class SigninFragment : Fragment() {
             authActivity.loadFragment(authActivity.signupFragment)
         }
         binding.signinBtn.setOnClickListener {
-
+            vm.signin(
+                binding.loginUsernameInput.editText?.text.toString(),
+                binding.loginPasswordInput.editText?.text.toString(),
+            )
+        }
+        vm.authStateLV.observe(viewLifecycleOwner){ state ->
+            if(state.isAuth){
+                startActivity(Intent(requireContext(), MainActivity::class.java))
+            }
         }
 
 

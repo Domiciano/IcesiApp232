@@ -32,6 +32,7 @@ class SignupFragment : Fragment() {
         }
         binding.signupButton.setOnClickListener {
             vm.signup(
+                binding.signupUsernameInput.editText?.text.toString(),
                 binding.signupEmailInput.editText?.text.toString(),
                 binding.signupPasswordInput.editText?.text.toString()
             )
