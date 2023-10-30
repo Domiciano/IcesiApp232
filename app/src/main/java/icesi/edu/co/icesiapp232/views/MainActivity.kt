@@ -7,6 +7,7 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FieldValue
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 for (doc in data!!.documentChanges) {
                     if (doc.type == DocumentChange.Type.ADDED) {
                         val message = doc.document.toObject(Message::class.java)
+                        Log.e(">>>",message.date.toString())
                         binding.messagesTV.append("${message.content}\n\n")
                     }
                 }
@@ -93,5 +95,6 @@ class MainActivity : AppCompatActivity() {
 }
 
 data class Message(
-    var content: String = ""
+    var content: String = "",
+    var date:Timestamp = Timestamp.now()
 )
